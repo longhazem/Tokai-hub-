@@ -1,0 +1,216 @@
+
+local OWNER_KEY = "Longtokai-QP102938QP"
+local SECRET = "s3cr3t_tokai_2025"
+
+local hubUrl = "https://raw.githubusercontent.com/longhazem/Tokai-hub-/refs/heads/main/ToKai%20Hub"
+
+local Players = game:GetService("Players")
+local LocalPlayer = Players.LocalPlayer
+
+local function compute_key_for(username, dayNumber)
+    local s = username .. "|" .. tostring(dayNumber) .. "|" .. SECRET
+    local sum = 0
+    for i = 1, #s do
+        sum = sum + string.byte(s, i)
+        sum = sum % 1000000007
+    end
+    local chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+    local n = sum
+    local out = {}
+    if n == 0 then table.insert(out, "0") end
+    while n > 0 do
+        local r = (n % 36) + 1
+        table.insert(out, 1, string.sub(chars, r, r))
+        n = math.floor(n / 36)
+    end
+    local raw = table.concat(out)
+    raw = string.rep("0", math.max(0, 6 - #raw)) .. raw
+    local k = string.format("%s-%s-%s", raw:sub(1,2), raw:sub(3,4), raw:sub(5,6))
+    return k
+end
+
+local function is_key_valid(providedKey, username)
+    if not providedKey or providedKey == "" then return false end
+    if providedKey == OWNER_KEY then return true end
+    local t = os.time()
+    local dayNow = math.floor(t / 86400)
+    for _, d in ipairs({dayNow, dayNow - 1}) do
+        local expected = compute_key_for(username, d)
+        if expected == providedKey then
+            return true
+        end
+    end
+    return false
+end
+
+local function try_read_saved()
+    local ok, v = pcall(function()
+        if readfile and isfile and isfile("tokai_saved_key.txt") then
+            return readfile("tokai_saved_key.txt")
+        end
+        return nil
+    end)
+    if ok and v and #v > 0 then return v end
+    return nil
+end
+
+local saved = try_read_saved()
+
+local CoreGui = game:GetService("CoreGui")
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "TokaiKeyGate"
+screenGui.ResetOnSpawn = false
+screenGui.Parent = CoreGui
+
+local frame = Instance.new("Frame", screenGui)
+frame.Size = UDim2.new(0, 380, 0, 160)
+frame.Position = UDim2.new(0.5, -190, 0.5, -80)
+frame.BackgroundColor3 = Color3.fromRGB(30,30,30)
+frame.BorderSizePixel = 0
+frame.Visible = true
+
+local uicorner = Instance.new("UICorner", frame)
+uicorner.CornerRadius = UDim.new(0,8)
+
+local title = Instance.new("TextLabel", frame)
+title.Size = UDim2.new(1, -20, 0, 28)
+title.Position = UDim2.new(0, 10, 0, 8)
+title.BackgroundTransparency = 1
+title.Text = "TOKAI - Key Gate"
+title.TextColor3 = Color3.fromRGB(230,230,230)
+title.Font = Enum.Font.GothamBold
+title.TextSize = 18
+title.TextXAlignment = Enum.TextXAlignment.Left
+
+local info = Instance.new("TextLabel", frame)
+info.Size = UDim2.new(1, -20, 0, 40)
+info.Position = UDim2.new(0, 10, 0, 36)
+info.BackgroundTransparency = 1
+info.Text = "Paste key hoặc sinh key cho username hiện tại. Owner bypass có thể vào trực tiếp."
+info.TextColor3 = Color3.fromRGB(180,180,180)
+info.Font = Enum.Font.Gotham
+info.TextSize = 12
+info.TextWrapped = true
+info.TextXAlignment = Enum.TextXAlignment.Left
+
+local keyBox = Instance.new("TextBox", frame)
+keyBox.Size = UDim2.new(1, -120, 0, 34)
+keyBox.Position = UDim2.new(0, 10, 0, 76)
+keyBox.BackgroundColor3 = Color3.fromRGB(22,22,22)
+keyBox.TextColor3 = Color3.fromRGB(240,240,240)
+keyBox.ClearTextOnFocus = false
+keyBox.Font = Enum.Font.Gotham
+keyBox.PlaceholderText = "Paste key vào đây..."
+keyBox.Text = saved or ""
+keyBox.TextSize = 16
+
+local genBtn = Instance.new("TextButton", frame)
+genBtn.Size = UDim2.new(0, 90, 0, 34)
+genBtn.Position = UDim2.new(1, -100, 0, 76)
+genBtn.BackgroundColor3 = Color3.fromRGB(50,120,220)
+genBtn.TextColor3 = Color3.fromRGB(255,255,255)
+genBtn.Font = Enum.Font.GothamBold
+genBtn.Text = "Generate"
+genBtn.TextSize = 14
+
+local checkBtn = Instance.new("TextButton", frame)
+checkBtn.Size = UDim2.new(0, 90, 0, 34)
+checkBtn.Position = UDim2.new(1, -100, 0, 116)
+checkBtn.BackgroundColor3 = Color3.fromRGB(70,200,120)
+checkBtn.TextColor3 = Color3.fromRGB(20,20,20)
+checkBtn.Font = Enum.Font.GothamBold
+checkBtn.Text = "Check & Load"
+checkBtn.TextSize = 14
+
+local copyBtn = Instance.new("TextButton", frame)
+copyBtn.Size = UDim2.new(0, 90, 0, 34)
+copyBtn.Position = UDim2.new(0, 10, 1, -44)
+copyBtn.BackgroundColor3 = Color3.fromRGB(100,100,100)
+copyBtn.TextColor3 = Color3.fromRGB(255,255,255)
+copyBtn.Font = Enum.Font.Gotham
+copyBtn.Text = "Copy Key"
+copyBtn.TextSize = 13
+
+local status = Instance.new("TextLabel", frame)
+status.Size = UDim2.new(1, -130, 0, 28)
+status.Position = UDim2.new(0, 110, 1, -44)
+status.BackgroundTransparency = 1
+status.Text = ""
+status.TextColor3 = Color3.fromRGB(220,220,220)
+status.Font = Enum.Font.Gotham
+status.TextSize = 13
+status.TextXAlignment = Enum.TextXAlignment.Left
+
+local function notify(msg, dur)
+    status.Text = msg or ""
+    task.delay(dur or 3, function()
+        if status and status.Parent then
+            status.Text = ""
+        end
+    end)
+end
+
+genBtn.MouseButton1Click:Connect(function()
+    local dayNow = math.floor(os.time()/86400)
+    local gen = compute_key_for(LocalPlayer.Name, dayNow)
+    keyBox.Text = gen
+    pcall(function() if setclipboard then setclipboard(gen) end end)
+    notify("Key đã tạo và copy (nếu hỗ trợ).", 4)
+end)
+
+copyBtn.MouseButton1Click:Connect(function()
+    local txt = keyBox.Text
+    if txt and #txt>0 then
+        pcall(function() if setclipboard then setclipboard(txt) end end)
+        notify("Đã copy key vào clipboard (nếu hỗ trợ).", 3)
+    else
+        notify("Chưa có key để copy.", 2)
+    end
+end)
+
+local function save_key_local(k)
+    pcall(function()
+        if writefile then
+            writefile("tokai_saved_key.txt", k)
+        end
+    end)
+end
+
+local function load_hub()
+    notify("Đang tải hub...", 10)
+    task.spawn(function()
+        local ok, body = pcall(function() return game:HttpGet(hubUrl) end)
+        if not ok or not body or #body < 10 then
+            notify("Không tải được hub.", 4)
+            return
+        end
+        local runOk, runErr = pcall(function()
+            local fn = loadstring(body)
+            if type(fn) == "function" then
+                fn()
+            end
+        end)
+        if not runOk then
+            notify("Lỗi khi chạy hub.", 5)
+            return
+        end
+        notify("Đã load hub.", 3)
+        screenGui:Destroy()
+    end)
+end
+
+checkBtn.MouseButton1Click:Connect(function()
+    local provided = keyBox.Text
+    if not provided or provided == "" then
+        notify("Chưa nhập key.", 2)
+        return
+    end
+    local ok = is_key_valid(provided, LocalPlayer.Name)
+    if ok then
+        save_key_local(provided)
+        notify("Key hợp lệ. Đang load hub...", 2)
+        load_hub()
+    else
+        notify("Key không hợp lệ hoặc hết hạn.", 3)
+    end
+end)
