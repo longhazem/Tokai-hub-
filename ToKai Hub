@@ -351,6 +351,56 @@ Tab:CreateButton({
     end
 })
 
+Tab:CreateButton({
+    Name = "plush crab",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(1868.70, 41.52, 1444.50)
+        end
+    end
+})
+
+Tab:CreateButton({
+    Name = "Mini Tokyo Tower",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(858.81, -12.33, 1597.81)
+        end
+    end
+})
+
+Tab:CreateButton({
+    Name = "Canon mini",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(2849.33, 151.29, -383.97)
+        end
+    end
+})
+
+Tab:CreateButton({
+    Name = "mini temple gate",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(2849.54, 101.06, -265.52)
+        end
+    end
+})
+
+Tab:CreateButton({
+    Name = "mini old town gate",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(2046.32, 16.61, 1438.46)
+        end
+    end
+})
+
 local Tab = Window:CreateTab("Settings", 4483362458)
 
 Rayfield:LoadConfiguration()
