@@ -160,6 +160,17 @@ Tab:CreateButton({
     end
 })
 
+Tab:CreateButton({
+    Name = "Yakiniku",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(1883.83, 413.41, 1413.41)
+        end
+    end
+})
+
+
 local Tab = Window:CreateTab("Settings", 4483362458)
 
 Rayfield:LoadConfiguration()
