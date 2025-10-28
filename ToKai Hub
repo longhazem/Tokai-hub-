@@ -189,6 +189,26 @@ Tab:CreateButton({
     end
 })
 
+Tab:CreateButton({
+    Name = "gas station",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(2971.77, 16.60, 1102.05)
+        end
+    end
+})
+
+Tab:CreateButton({
+    Name = "temple-canon-hot spring complex",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(2771.25, 142.56, -409.14)
+        end
+    end
+})
+
 local Tab = Window:CreateTab("Settings", 4483362458)
 
 Rayfield:LoadConfiguration()
