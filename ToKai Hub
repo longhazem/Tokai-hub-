@@ -209,6 +209,16 @@ Tab:CreateButton({
     end
 })
 
+Tab:CreateButton({
+    Name = "obstacle",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(-205.39, 17.78, -361.61)
+        end
+    end
+})
+
 local Tab = Window:CreateTab("Settings", 4483362458)
 
 Rayfield:LoadConfiguration()
