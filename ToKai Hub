@@ -299,6 +299,16 @@ Tab:CreateButton({
     end
 })
 
+Tab:CreateButton({
+    Name = "sewer arena",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(-4154.58, -197.29, 1692.40)
+        end
+    end
+})
+
 local Tab = Window:CreateTab("hidden teleporter item", 4483362458)
 
 Tab:CreateButton({
