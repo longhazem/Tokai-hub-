@@ -219,6 +219,86 @@ Tab:CreateButton({
     end
 })
 
+Tab:CreateButton({
+    Name = "Bar",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(1934.04, 16.20, 2085.67)
+        end
+    end
+})
+
+Tab:CreateButton({
+    Name = "football club ",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(1894.43, 152.71, 2052.70)
+        end
+    end
+})
+
+Tab:CreateButton({
+    Name = "fire department ",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(2358.01, 16.61, 1171.54)
+        end
+    end
+})
+
+Tab:CreateButton({
+    Name = "gun1 item",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(3065.43, 6.50, 983.16)
+        end
+    end
+})
+
+Tab:CreateButton({
+    Name = "gun 2 item",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(2903.74, 11.44, -568.22)
+        end
+    end
+})
+
+Tab:CreateButton({
+    Name = "gun3 items",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(-1711.93, 19.95, -571.85)
+        end
+    end
+})
+
+Tab:CreateButton({
+    Name = "gun4 items",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(1060.81, 150.45, 1729.85)
+        end
+    end
+})
+
+Tab:CreateButton({
+    Name = "Police shop gun",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(1014.14, 150.45, 1777.32)
+        end
+    end
+})
+
 local Tab = Window:CreateTab("Settings", 4483362458)
 
 Rayfield:LoadConfiguration()
