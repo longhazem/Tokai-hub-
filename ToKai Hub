@@ -401,6 +401,56 @@ Tab:CreateButton({
     end
 })
 
+Tab:CreateButton({
+    Name = "ae86.1/5",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(2936.67, 28.80, 1187.92)
+        end
+    end
+})
+
+Tab:CreateButton({
+    Name = "ae86.2/5",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(3193.79, 122.60, 1392.70)
+        end
+    end
+})
+
+Tab:CreateButton({
+    Name = "ae86.3/5",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(2587.60, 5.23, -674.54)
+        end
+    end
+})
+
+Tab:CreateButton({
+    Name = "ae86.4/5",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(156.27, 35.71, -1430.83)
+        end
+    end
+})
+
+Tab:CreateButton({
+    Name = "ae86.5/5",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(-1821.14, 5.50, -1456.99)
+        end
+    end
+})
+
 local Tab = Window:CreateTab("Settings", 4483362458)
 
 Rayfield:LoadConfiguration()
