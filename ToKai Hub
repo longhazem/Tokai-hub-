@@ -299,6 +299,58 @@ Tab:CreateButton({
     end
 })
 
+local Tab = Window:CreateTab("hidden teleporter item", 4483362458)
+
+Tab:CreateButton({
+    Name = "Toy car1",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(339.92, 206.67, -571.40)
+        end
+    end
+})
+
+Tab:CreateButton({
+    Name = "Toy car2",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(1759.59, 16.01, 1468.07)
+        end
+    end
+})
+
+Tab:CreateButton({
+    Name = "Toy car3",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(1055.25, 18.20, 1161.50)
+        end
+    end
+})
+
+Tab:CreateButton({
+    Name = "Toy car4",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(-1834.48, 17.32, -1179.66)
+        end
+    end
+})
+
+Tab:CreateButton({
+    Name = "Toy car5",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(3039.70, -52.06, -4776.76)
+        end
+    end
+})
+
 local Tab = Window:CreateTab("Settings", 4483362458)
 
 Rayfield:LoadConfiguration()
