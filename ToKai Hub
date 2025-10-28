@@ -170,7 +170,6 @@ Tab:CreateButton({
     end
 })
 
-
 local Tab = Window:CreateTab("Settings", 4483362458)
 
 Rayfield:LoadConfiguration()
