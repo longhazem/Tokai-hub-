@@ -74,6 +74,16 @@ TeleTab:CreateButton({
     end,
 })
 
+TeleTab:CreateButton({
+    Name = "SHOP CAR",
+    Callback = function()
+        local player = game.Players.LocalPlayer
+        if player and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+            player.Character:MoveTo(Vector3.new(1565.06, 16.71, 1808.98))
+        end
+    end,
+})
+
 local Tab = Window:CreateTab("Settings", 4483362458)
 
 {
