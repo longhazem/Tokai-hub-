@@ -8,22 +8,18 @@ local Window = Rayfield:CreateWindow({
     ShowText = "Rayfield",
     Theme = "Bloom",
     ToggleUIKeybind = "K",
-
     DisableRayfieldPrompts = false,
     DisableBuildWarnings = false,
-
     ConfigurationSaving = {
         Enabled = true,
         FolderName = nil,
         FileName = "Big Hub"
     },
-
     Discord = {
         Enabled = false,
         Invite = "noinvitelink",
         RememberJoins = true
     },
-
     KeySystem = false,
     KeySettings = {
         Title = "Untitled",
@@ -45,86 +41,75 @@ Tab:CreateButton({
     Name = "emote7yd7",
     Callback = function()
         loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-7yd7-I-Emote-Script-48024"))()
-    end,
+    end
 })
 
 Tab:CreateButton({
     Name = "IY",
     Callback = function()
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source'))()
-    end,
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
+    end
 })
 
 Tab:CreateButton({
     Name = "Invisible",
     Callback = function()
-        loadstring(game:HttpGet('https://raw.githubusercontent.com/GhostPlayer352/Test4/refs/heads/main/Invisible%20Mode'))()
-    end,
+        loadstring(game:HttpGet("https://raw.githubusercontent.com/GhostPlayer352/Test4/refs/heads/main/Invisible%20Mode"))()
+    end
 })
 
-local TeleTab = Window:CreateTab("Teleporter", 4483362458)
+local Tab = Window:CreateTab("Teleporter", 4483362458)
 
-TeleTab:CreateButton({
+Tab:CreateButton({
     Name = "Lobby",
     Callback = function()
-        local player = game.Players.LocalPlayer
-        if player and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
-            player.Character:MoveTo(Vector3.new(1576.58, 16.62, 1960.95))
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(1576.58, 16.62, 1960.95)
         end
-    end,
+    end
 })
 
-TeleTab:CreateButton({
+Tab:CreateButton({
     Name = "SHOP CAR",
     Callback = function()
-        local player = game.Players.LocalPlayer
-        if player and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
-            player.Character:MoveTo(Vector3.new(1565.06, 16.71, 1808.98))
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(1565.06, 16.71, 1808.98)
         end
-    end,
+    end
+})
+
+Tab:CreateButton({
+    Name = "hamburger",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(1772.07, 16.61, 1841.31)
+        end
+    end
+})
+
+Tab:CreateButton({
+    Name = "Fashion store",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(1709.19, 9.60, 1631.97)
+        end
+    end
+})
+
+Tab:CreateButton({
+    Name = "Shop Yum Yum",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(1730.90, 16.61, 1521.29)
+        end
+    end
 })
 
 local Tab = Window:CreateTab("Settings", 4483362458)
-
-{
-    TextColor = Color3.fromRGB(240, 240, 240),
-    Background = Color3.fromRGB(25, 25, 25),
-    Topbar = Color3.fromRGB(34, 34, 34),
-    Shadow = Color3.fromRGB(20, 20, 20),
-
-    NotificationBackground = Color3.fromRGB(20, 20, 20),
-    NotificationActionsBackground = Color3.fromRGB(230, 230, 230),
-
-    TabBackground = Color3.fromRGB(80, 80, 80),
-    TabStroke = Color3.fromRGB(85, 85, 85),
-    TabBackgroundSelected = Color3.fromRGB(210, 210, 210),
-    TabTextColor = Color3.fromRGB(240, 240, 240),
-    SelectedTabTextColor = Color3.fromRGB(50, 50, 50),
-
-    ElementBackground = Color3.fromRGB(35, 35, 35),
-    ElementBackgroundHover = Color3.fromRGB(40, 40, 40),
-    SecondaryElementBackground = Color3.fromRGB(25, 25, 25),
-    ElementStroke = Color3.fromRGB(50, 50, 50),
-    SecondaryElementStroke = Color3.fromRGB(40, 40, 40),
-            
-    SliderBackground = Color3.fromRGB(50, 138, 220),
-    SliderProgress = Color3.fromRGB(50, 138, 220),
-    SliderStroke = Color3.fromRGB(58, 163, 255),
-
-    ToggleBackground = Color3.fromRGB(30, 30, 30),
-    ToggleEnabled = Color3.fromRGB(0, 146, 214),
-    ToggleDisabled = Color3.fromRGB(100, 100, 100),
-    ToggleEnabledStroke = Color3.fromRGB(0, 170, 255),
-    ToggleDisabledStroke = Color3.fromRGB(125, 125, 125),
-    ToggleEnabledOuterStroke = Color3.fromRGB(100, 100, 100),
-    ToggleDisabledOuterStroke = Color3.fromRGB(65, 65, 65),
-
-    DropdownSelected = Color3.fromRGB(40, 40, 40),
-    DropdownUnselected = Color3.fromRGB(30, 30, 30),
-
-    InputBackground = Color3.fromRGB(30, 30, 30),
-    InputStroke = Color3.fromRGB(65, 65, 65),
-    PlaceholderColor = Color3.fromRGB(178, 178, 178)
-}
 
 Rayfield:LoadConfiguration()
