@@ -1,4 +1,3 @@
-
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
@@ -63,13 +62,22 @@ Tab:CreateButton({
     end,
 })
 
-local Tab= Window:CreateTab("Teleporter",4483362458)
+local TeleTab = Window:CreateTab("Teleporter", 4483362458)
+
+TeleTab:CreateButton({
+    Name = "Lobby",
+    Callback = function()
+        local player = game.Players.LocalPlayer
+        if player and player.Character and player.Character:FindFirstChild("HumanoidRootPart") then
+            player.Character:MoveTo(Vector3.new(1576.58, 16.62, 1960.95))
+        end
+    end,
+})
 
 local Tab = Window:CreateTab("Settings", 4483362458)
 
 {
     TextColor = Color3.fromRGB(240, 240, 240),
-
     Background = Color3.fromRGB(25, 25, 25),
     Topbar = Color3.fromRGB(34, 34, 34),
     Shadow = Color3.fromRGB(20, 20, 20),
