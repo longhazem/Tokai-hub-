@@ -110,6 +110,56 @@ Tab:CreateButton({
     end
 })
 
+Tab:CreateButton({
+    Name = "Bank",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(1594.12, 16.85, 1583.84)
+        end
+    end
+})
+
+Tab:CreateButton({
+    Name = "bean bwer-caffe",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(1601.99, 16.64, 1461.84)
+        end
+    end
+})
+
+Tab:CreateButton({
+    Name = "IBN",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(1306.53, 174.84, 1320.01)
+        end
+    end
+})
+
+Tab:CreateButton({
+    Name = "Police 1",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(1094.87, 24.10, 1593.59)
+        end
+    end
+})
+
+Tab:CreateButton({
+    Name = "Police 2",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(1834.87, 16.31, 1500.66)
+        end
+    end
+})
+
 local Tab = Window:CreateTab("Settings", 4483362458)
 
 Rayfield:LoadConfiguration()
