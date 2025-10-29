@@ -290,6 +290,16 @@ Tab:CreateButton({
 })
 
 Tab:CreateButton({
+    Name = "gun5 items",
+    Callback = function()
+        local p = game.Players.LocalPlayer
+        if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+            p.Character.HumanoidRootPart.CFrame = CFrame.new(-296.20, 18.23, -624.81)
+        end
+    end
+})
+
+Tab:CreateButton({
     Name = "Police shop gun",
     Callback = function()
         local p = game.Players.LocalPlayer
