@@ -1,0 +1,183 @@
+local Players = game:GetService("Players")
+local Workspace = game:GetService("Workspace")
+local UserInputService = game:GetService("UserInputService")
+local LocalPlayer = Players.LocalPlayer
+
+local HitboxEnabled = true
+local HitboxSize = 6
+local HitboxColor = Color3.fromRGB(255,206,201)
+local HitboxTransparency = 0.7
+
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "HitboxGUI"
+screenGui.Parent = (gethui and gethui()) or game.CoreGui
+screenGui.ResetOnSpawn = false
+
+local frame = Instance.new("Frame")
+frame.Size = UDim2.new(0,200,0,320)
+frame.Position = UDim2.new(0,50,0,100)
+frame.BackgroundColor3 = Color3.fromRGB(30,30,30)
+frame.Parent = screenGui
+frame.Visible = true
+
+local toggleGuiBtn = Instance.new("TextButton")
+toggleGuiBtn.Size = UDim2.new(0,120,0,40)
+toggleGuiBtn.Position = UDim2.new(0,20,0,20)
+toggleGuiBtn.BackgroundColor3 = Color3.fromRGB(40,40,40)
+toggleGuiBtn.TextColor3 = Color3.fromRGB(255,255,255)
+toggleGuiBtn.Font = Enum.Font.SourceSansBold
+toggleGuiBtn.TextSize = 18
+toggleGuiBtn.Text = "Toggle GUI"
+toggleGuiBtn.Parent = screenGui
+
+toggleGuiBtn.MouseButton1Click:Connect(function()
+	frame.Visible = not frame.Visible
+end)
+
+local dragging, dragInput, mousePos, framePos
+frame.InputBegan:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseButton1 then
+		dragging = true
+		mousePos = input.Position
+		framePos = frame.Position
+		input.Changed:Connect(function()
+			if input.UserInputState == Enum.UserInputState.End then dragging = false end
+		end)
+	end
+end)
+frame.InputChanged:Connect(function(input)
+	if input.UserInputType == Enum.UserInputType.MouseMovement then dragInput = input end
+end)
+UserInputService.InputChanged:Connect(function(input)
+	if input == dragInput and dragging then
+		local delta = input.Position - mousePos
+		frame.Position = UDim2.new(framePos.X.Scale, framePos.X.Offset + delta.X, framePos.Y.Scale, framePos.Y.Offset + delta.Y)
+	end
+end)
+
+local function createButton(text,posY)
+	local btn = Instance.new("TextButton")
+	btn.Size = UDim2.new(0,160,0,30)
+	btn.Position = UDim2.new(0,20,0,posY)
+	btn.BackgroundColor3 = Color3.fromRGB(50,50,50)
+	btn.TextColor3 = Color3.fromRGB(255,255,255)
+	btn.Text = text
+	btn.Font = Enum.Font.SourceSansBold
+	btn.TextSize = 18
+	btn.Parent = frame
+	return btn
+end
+
+local function createLabel(text,posY)
+	local lbl = Instance.new("TextLabel")
+	lbl.Size = UDim2.new(0,160,0,20)
+	lbl.Position = UDim2.new(0,20,0,posY)
+	lbl.BackgroundTransparency = 1
+	lbl.TextColor3 = Color3.fromRGB(255,255,255)
+	lbl.Text = text
+	lbl.Font = Enum.Font.SourceSansBold
+	lbl.TextSize = 16
+	lbl.Parent = frame
+	return lbl
+end
+
+local toggleBtn = createButton("Hitbox: ON",10)
+local sizeLabel = createLabel("Size: "..HitboxSize,50)
+local plusBtn = createButton("+ Size",70)
+local minusBtn = createButton("- Size",100)
+local colorLabel = createLabel("Color Preset",130)
+local pinkBtn = createButton("Pink",150)
+local redBtn = createButton("Red",180)
+local blueBtn = createButton("Blue",210)
+local tLabel = createLabel("Transparency: "..HitboxTransparency,240)
+local tPlus = createButton("+ T",260)
+local tMinus = createButton("- T",290)
+
+local function setHitbox(hrp)
+	if HitboxEnabled then
+		hrp.Size = Vector3.new(HitboxSize,HitboxSize,HitboxSize)
+		hrp.Color = HitboxColor
+		hrp.Transparency = HitboxTransparency
+		hrp.Material = Enum.Material.Neon
+		hrp.CanCollide = false
+	else
+		hrp.Size = Vector3.new(2,2,1)
+		hrp.Transparency = 1
+		hrp.Material = Enum.Material.Plastic
+		hrp.CanCollide = true
+	end
+end
+
+local function expandAll()
+	for _,m in ipairs(Workspace:GetDescendants()) do
+		if m:IsA("Model") and m:FindFirstChildOfClass("Humanoid") then
+			if not Players:GetPlayerFromCharacter(m) then
+				local hrp = m:FindFirstChild("HumanoidRootPart")
+				if hrp then
+					setHitbox(hrp)
+				end
+			end
+		end
+	end
+end
+
+toggleBtn.MouseButton1Click:Connect(function()
+	HitboxEnabled = not HitboxEnabled
+	toggleBtn.Text = "Hitbox: "..(HitboxEnabled and "ON" or "OFF")
+	expandAll()
+end)
+plusBtn.MouseButton1Click:Connect(function()
+	HitboxSize = math.clamp(HitboxSize + 1,2,50)
+	sizeLabel.Text = "Size: "..HitboxSize
+	expandAll()
+end)
+minusBtn.MouseButton1Click:Connect(function()
+	HitboxSize = math.clamp(HitboxSize - 1,2,50)
+	sizeLabel.Text = "Size: "..HitboxSize
+	expandAll()
+end)
+pinkBtn.MouseButton1Click:Connect(function()
+	HitboxColor = Color3.fromRGB(255,206,201)
+	expandAll()
+end)
+redBtn.MouseButton1Click:Connect(function()
+	HitboxColor = Color3.fromRGB(255,0,0)
+	expandAll()
+end)
+blueBtn.MouseButton1Click:Connect(function()
+	HitboxColor = Color3.fromRGB(0,0,255)
+	expandAll()
+end)
+tPlus.MouseButton1Click:Connect(function()
+	HitboxTransparency = math.clamp(HitboxTransparency + 0.05,0,1)
+	tLabel.Text = "Transparency: "..string.format("%.2f",HitboxTransparency)
+	expandAll()
+end)
+tMinus.MouseButton1Click:Connect(function()
+	HitboxTransparency = math.clamp(HitboxTransparency - 0.05,0,1)
+	tLabel.Text = "Transparency: "..string.format("%.2f",HitboxTransparency)
+	expandAll()
+end)
+
+Workspace.DescendantAdded:Connect(function(obj)
+	if obj:IsA("Model") and obj:FindFirstChildOfClass("Humanoid") then
+		task.spawn(function()
+			local hrp
+			repeat
+				task.wait(0.1)
+				hrp = obj:FindFirstChild("HumanoidRootPart")
+			until hrp or not obj.Parent
+			if hrp then
+				setHitbox(hrp)
+			end
+		end)
+	end
+end)
+
+task.spawn(function()
+	while task.wait(2) do
+		expandAll()
+	end
+end)
+
+expandAll()
