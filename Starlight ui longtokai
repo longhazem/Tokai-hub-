@@ -5,6 +5,7 @@ local Window = Starlight:CreateWindow({
     Name = "Tokai-hub",
     Subtitle = "v1.0",
     Icon = 123456789,
+    Theme = "Bloom",
     LoadingSettings = {
         Title = "Toka-Hub",
         Subtitle = "Welcome to Tokai Hub",
@@ -472,5 +473,3 @@ Tab:CreateButton({
         end
     end
 })
-
-starlight:LoadConfiguration()
