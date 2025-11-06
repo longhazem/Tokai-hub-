@@ -472,3 +472,5 @@ Tab:CreateButton({
         end
     end
 })
+
+starlight:LoadConfiguration()
