@@ -1,4 +1,5 @@
 local Starlight = loadstring(game:HttpGet("https://raw.nebulasoftworks.xyz/starlight"))()
+local NebulaIcons = loadstring(game:HttpGet("https://raw.nebulasoftworks.xyz/nebula-icon-library-loader"))()
 
 local Window = Starlight:CreateWindow({
     Name = "TOKAI-HUB-Zaibatsu+RP",
@@ -15,14 +16,28 @@ local Window = Starlight:CreateWindow({
     }
 })
 
-local MainTab = Window:CreateTab("Main")
-local MiscTab = Window:CreateTab("Misc")
-local TeleTab = Window:CreateTab("Teleporter")
-local HiddenTab = Window:CreateTab("hidden teleporter item")
-local SettingsTab = Window:CreateTab("Settings")
+local TabSection = Window:CreateTabSection("Main TabSection", true)
 
+local function teleportTo(x, y, z)
+    local p = game.Players.LocalPlayer
+    if p and p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+        p.Character.HumanoidRootPart.CFrame = CFrame.new(x, y, z)
+    end
+end
+
+local MainTab = TabSection:CreateTab({
+    Name = "Main",
+    Icon = NebulaIcons:GetIcon('home', 'Material'),
+    Columns = 1
+}, "INDEX")
 
 local MainSection = MainTab:CreateSection("Section Example")
+
+local MiscTab = TabSection:CreateTab({
+    Name = "Misc",
+    Icon = NebulaIcons:GetIcon('widgets', 'Material'),
+    Columns = 1
+}, "INDEX")
 
 local MiscSection = MiscTab:CreateSection("Scripts")
 MiscSection:CreateButton({
@@ -31,14 +46,12 @@ MiscSection:CreateButton({
         loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-7yd7-I-Emote-Script-48024"))()
     end
 })
-
 MiscSection:CreateButton({
     Name = "IY",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
     end
 })
-
 MiscSection:CreateButton({
     Name = "Invisible",
     Callback = function()
@@ -46,13 +59,11 @@ MiscSection:CreateButton({
     end
 })
 
-
-local function teleportTo(x, y, z)
-    local p = game.Players.LocalPlayer
-    if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
-        p.Character.HumanoidRootPart.CFrame = CFrame.new(x, y, z)
-    end
-end
+local TeleTab = TabSection:CreateTab({
+    Name = "Teleporter",
+    Icon = NebulaIcons:GetIcon('place', 'Material'),
+    Columns = 2
+}, "INDEX")
 
 local TeleSection = TeleTab:CreateSection("Locations")
 TeleSection:CreateButton({ Name = "Lobby", Callback = function() teleportTo(1576.58, 16.62, 1960.95) end })
@@ -82,8 +93,13 @@ TeleSection:CreateButton({ Name = "gun5 items", Callback = function() teleportTo
 TeleSection:CreateButton({ Name = "Police shop gun", Callback = function() teleportTo(1014.14, 150.45, 1777.32) end })
 TeleSection:CreateButton({ Name = "sewer arena", Callback = function() teleportTo(-4154.58, -197.29, 1692.40) end })
 
+local HiddenTabObj = TabSection:CreateTab({
+    Name = "hidden teleporter item",
+    Icon = NebulaIcons:GetIcon('inventory_2', 'Material'),
+    Columns = 2
+}, "INDEX")
 
-local HiddenSection = HiddenTab:CreateSection("Hidden Items")
+local HiddenSection = HiddenTabObj:CreateSection("Hidden Items")
 HiddenSection:CreateButton({ Name = "Toy car1", Callback = function() teleportTo(339.92, 206.67, -571.40) end })
 HiddenSection:CreateButton({ Name = "Toy car2", Callback = function() teleportTo(1759.59, 16.01, 1468.07) end })
 HiddenSection:CreateButton({ Name = "Toy car3", Callback = function() teleportTo(1055.25, 18.20, 1161.50) end })
@@ -100,7 +116,14 @@ HiddenSection:CreateButton({ Name = "ae86.3/5", Callback = function() teleportTo
 HiddenSection:CreateButton({ Name = "ae86.4/5", Callback = function() teleportTo(156.27, 35.71, -1430.83) end })
 HiddenSection:CreateButton({ Name = "ae86.5/5", Callback = function() teleportTo(-1821.14, 5.50, -1456.99) end })
 
-SettingsTab:CreateKeybind({
+local SettingsTab = TabSection:CreateTab({
+    Name = "Settings",
+    Icon = NebulaIcons:GetIcon('settings', 'Material'),
+    Columns = 1
+}, "INDEX")
+
+local SettingsSection = SettingsTab:CreateSection("Settings")
+SettingsSection:CreateKeybind({
     Name = "Toggle UI",
     CurrentKeybind = "K",
     HoldToInteract = false,
