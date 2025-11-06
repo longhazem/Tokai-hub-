@@ -4,10 +4,10 @@ local NebulaIcons = loadstring(game:HttpGet("https://raw.nebulasoftworks.xyz/neb
 local Window = Starlight:CreateWindow({
     Name = "Tokai-hub",
     Subtitle = "v1.0",
-    Icon = 123456789,
+    Icon = "131556897603144",
     Theme = "Bloom",
     LoadingSettings = {
-        Title = "Toka-Hub",
+        Title = "Tokai hub",
         Subtitle = "Welcome to Tokai Hub",
     },
     FileSettings = {
