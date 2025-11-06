@@ -2,132 +2,134 @@ local Starlight = loadstring(game:HttpGet("https://raw.nebulasoftworks.xyz/starl
 local NebulaIcons = loadstring(game:HttpGet("https://raw.nebulasoftworks.xyz/nebula-icon-library-loader"))()
 
 local Window = Starlight:CreateWindow({
-    Name = "TOKAI-HUB-Zaibatsu+RP",
-    Subtitle = "by LONGTOKAI",
-    Icon = 0,
+    Name = "Tokai-hub",
+    Subtitle = "v1.0",
+    Icon = 123456789,
     Theme = "Bloom",
     LoadingSettings = {
-        Title = "TOKAI",
-        Subtitle = "Initializing..."
+        Title = "Toka-Hub",
+        Subtitle = "Welcome to Tokai Hub",
     },
     FileSettings = {
-        ConfigFolder = "TOKAI-HUB",
-        FileName = "Big Hub"
+        ConfigFolder = "Tokai-hub"
+    },
+})
+
+Window:PromptDialog({
+    Name = "info",
+    Content = "Welcome to Tokai Hub, enjoy your experience!.",
+    Type = 1,
+    Actions = {
+        Primary = {
+            Name = "info!",
+            Callback = function()
+                print("Okay!")
+            end
+        },
+        {
+            Name = "Cancel",
+            Callback = function()
+                print("Cancel!")
+            end
+        },
     }
 })
 
-local TabSection = Window:CreateTabSection("Main TabSection", true)
-
-local function teleportTo(x, y, z)
-    local p = game.Players.LocalPlayer
-    if p and p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
-        p.Character.HumanoidRootPart.CFrame = CFrame.new(x, y, z)
-    end
-end
+local TabSection = Window:CreateTabSection("Tab Section")
 
 local MainTab = TabSection:CreateTab({
     Name = "Main",
     Icon = NebulaIcons:GetIcon('home', 'Material'),
     Columns = 1
-}, "INDEX")
-
-local MainSection = MainTab:CreateSection("Section Example")
+}, "MAIN")
 
 local MiscTab = TabSection:CreateTab({
     Name = "Misc",
     Icon = NebulaIcons:GetIcon('widgets', 'Material'),
     Columns = 1
-}, "INDEX")
+}, "MISC")
 
-local MiscSection = MiscTab:CreateSection("Scripts")
-MiscSection:CreateButton({
+local TeleportTab = TabSection:CreateTab({
+    Name = "Teleporter",
+    Icon = NebulaIcons:GetIcon('place', 'Material'),
+    Columns = 2
+}, "TELEPORT")
+
+local HiddenTab = TabSection:CreateTab({
+    Name = "Hidden Teleport",
+    Icon = NebulaIcons:GetIcon('visibility_off', 'Material'),
+    Columns = 2
+}, "HIDDEN")
+
+MainTab:CreateSection("Section Example")
+
+local function teleportTo(x, y, z)
+    local p = game.Players.LocalPlayer
+    if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+        p.Character.HumanoidRootPart.CFrame = CFrame.new(x, y, z)
+    end
+end
+
+MiscTab:CreateButton({
     Name = "emote7yd7",
     Callback = function()
         loadstring(game:HttpGet("https://rawscripts.net/raw/Universal-Script-7yd7-I-Emote-Script-48024"))()
     end
 })
-MiscSection:CreateButton({
+
+MiscTab:CreateButton({
     Name = "IY",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source"))()
     end
 })
-MiscSection:CreateButton({
+
+MiscTab:CreateButton({
     Name = "Invisible",
     Callback = function()
         loadstring(game:HttpGet("https://raw.githubusercontent.com/GhostPlayer352/Test4/refs/heads/main/Invisible%20Mode"))()
     end
 })
 
-local TeleTab = TabSection:CreateTab({
-    Name = "Teleporter",
-    Icon = NebulaIcons:GetIcon('place', 'Material'),
-    Columns = 2
-}, "INDEX")
+TeleportTab:CreateButton({ Name = "Lobby", Callback = function() teleportTo(1576.58, 16.62, 1960.95) end })
+TeleportTab:CreateButton({ Name = "SHOP CAR", Callback = function() teleportTo(1565.06, 16.71, 1808.98) end })
+TeleportTab:CreateButton({ Name = "hamburger", Callback = function() teleportTo(1772.07, 16.61, 1841.31) end })
+TeleportTab:CreateButton({ Name = "Fashion store", Callback = function() teleportTo(1709.19, 9.60, 1631.97) end })
+TeleportTab:CreateButton({ Name = "Shop Yum Yum", Callback = function() teleportTo(1730.90, 16.61, 1521.29) end })
+TeleportTab:CreateButton({ Name = "Bank", Callback = function() teleportTo(1594.12, 16.85, 1583.84) end })
+TeleportTab:CreateButton({ Name = "bean bwer-caffe", Callback = function() teleportTo(1601.99, 16.64, 1461.84) end })
+TeleportTab:CreateButton({ Name = "IBN", Callback = function() teleportTo(1306.53, 174.84, 1320.01) end })
+TeleportTab:CreateButton({ Name = "Police 1", Callback = function() teleportTo(1094.87, 24.10, 1593.59) end })
+TeleportTab:CreateButton({ Name = "Police 2", Callback = function() teleportTo(1834.87, 16.31, 1500.66) end })
+TeleportTab:CreateButton({ Name = "Yakiniku", Callback = function() teleportTo(1883.83, 16.01, 1413.41) end })
+TeleportTab:CreateButton({ Name = "Meitetsu-hospital", Callback = function() teleportTo(1983.45, 16.66, 1081.48) end })
+TeleportTab:CreateButton({ Name = "Sea-beach", Callback = function() teleportTo(1836.51, 16.46, 918.27) end })
+TeleportTab:CreateButton({ Name = "gas station", Callback = function() teleportTo(2971.77, 16.60, 1102.05) end })
+TeleportTab:CreateButton({ Name = "temple-canon-hot spring complex", Callback = function() teleportTo(2771.25, 142.56, -409.14) end })
+TeleportTab:CreateButton({ Name = "obstacle", Callback = function() teleportTo(-205.39, 17.78, -361.61) end })
+TeleportTab:CreateButton({ Name = "Bar", Callback = function() teleportTo(1934.04, 16.20, 2085.67) end })
+TeleportTab:CreateButton({ Name = "football club", Callback = function() teleportTo(1894.43, 152.71, 2052.70) end })
+TeleportTab:CreateButton({ Name = "fire department", Callback = function() teleportTo(2358.01, 16.61, 1171.54) end })
+TeleportTab:CreateButton({ Name = "gun1 item", Callback = function() teleportTo(3065.43, 6.50, 983.16) end })
+TeleportTab:CreateButton({ Name = "gun 2 item", Callback = function() teleportTo(2903.74, 11.44, -568.22) end })
+TeleportTab:CreateButton({ Name = "gun3 items", Callback = function() teleportTo(-1711.93, 19.95, -571.85) end })
+TeleportTab:CreateButton({ Name = "gun4 items", Callback = function() teleportTo(1060.81, 150.45, 1729.85) end })
+TeleportTab:CreateButton({ Name = "gun5 items", Callback = function() teleportTo(-296.20, 18.23, -624.81) end })
+TeleportTab:CreateButton({ Name = "Police shop gun", Callback = function() teleportTo(1014.14, 150.45, 1777.32) end })
+TeleportTab:CreateButton({ Name = "sewer arena", Callback = function() teleportTo(-4154.58, -197.29, 1692.40) end })
 
-local TeleSection = TeleTab:CreateSection("Locations")
-TeleSection:CreateButton({ Name = "Lobby", Callback = function() teleportTo(1576.58, 16.62, 1960.95) end })
-TeleSection:CreateButton({ Name = "SHOP CAR", Callback = function() teleportTo(1565.06, 16.71, 1808.98) end })
-TeleSection:CreateButton({ Name = "hamburger", Callback = function() teleportTo(1772.07, 16.61, 1841.31) end })
-TeleSection:CreateButton({ Name = "Fashion store", Callback = function() teleportTo(1709.19, 9.60, 1631.97) end })
-TeleSection:CreateButton({ Name = "Shop Yum Yum", Callback = function() teleportTo(1730.90, 16.61, 1521.29) end })
-TeleSection:CreateButton({ Name = "Bank", Callback = function() teleportTo(1594.12, 16.85, 1583.84) end })
-TeleSection:CreateButton({ Name = "bean bwer-caffe", Callback = function() teleportTo(1601.99, 16.64, 1461.84) end })
-TeleSection:CreateButton({ Name = "IBN", Callback = function() teleportTo(1306.53, 174.84, 1320.01) end })
-TeleSection:CreateButton({ Name = "Police 1", Callback = function() teleportTo(1094.87, 24.10, 1593.59) end })
-TeleSection:CreateButton({ Name = "Police 2", Callback = function() teleportTo(1834.87, 16.31, 1500.66) end })
-TeleSection:CreateButton({ Name = "Yakiniku", Callback = function() teleportTo(1883.83, 16.01, 1413.41) end })
-TeleSection:CreateButton({ Name = "Meitetsu-hospital", Callback = function() teleportTo(1983.45, 16.66, 1081.48) end })
-TeleSection:CreateButton({ Name = "Sea-beach", Callback = function() teleportTo(1836.51, 16.46, 918.27) end })
-TeleSection:CreateButton({ Name = "gas station", Callback = function() teleportTo(2971.77, 16.60, 1102.05) end })
-TeleSection:CreateButton({ Name = "temple-canon-hot spring complex", Callback = function() teleportTo(2771.25, 142.56, -409.14) end })
-TeleSection:CreateButton({ Name = "obstacle", Callback = function() teleportTo(-205.39, 17.78, -361.61) end })
-TeleSection:CreateButton({ Name = "Bar", Callback = function() teleportTo(1934.04, 16.20, 2085.67) end })
-TeleSection:CreateButton({ Name = "football club", Callback = function() teleportTo(1894.43, 152.71, 2052.70) end })
-TeleSection:CreateButton({ Name = "fire department", Callback = function() teleportTo(2358.01, 16.61, 1171.54) end })
-TeleSection:CreateButton({ Name = "gun1 item", Callback = function() teleportTo(3065.43, 6.50, 983.16) end })
-TeleSection:CreateButton({ Name = "gun 2 item", Callback = function() teleportTo(2903.74, 11.44, -568.22) end })
-TeleSection:CreateButton({ Name = "gun3 items", Callback = function() teleportTo(-1711.93, 19.95, -571.85) end })
-TeleSection:CreateButton({ Name = "gun4 items", Callback = function() teleportTo(1060.81, 150.45, 1729.85) end })
-TeleSection:CreateButton({ Name = "gun5 items", Callback = function() teleportTo(-296.20, 18.23, -624.81) end })
-TeleSection:CreateButton({ Name = "Police shop gun", Callback = function() teleportTo(1014.14, 150.45, 1777.32) end })
-TeleSection:CreateButton({ Name = "sewer arena", Callback = function() teleportTo(-4154.58, -197.29, 1692.40) end })
-
-local HiddenTabObj = TabSection:CreateTab({
-    Name = "hidden teleporter item",
-    Icon = NebulaIcons:GetIcon('inventory_2', 'Material'),
-    Columns = 2
-}, "INDEX")
-
-local HiddenSection = HiddenTabObj:CreateSection("Hidden Items")
-HiddenSection:CreateButton({ Name = "Toy car1", Callback = function() teleportTo(339.92, 206.67, -571.40) end })
-HiddenSection:CreateButton({ Name = "Toy car2", Callback = function() teleportTo(1759.59, 16.01, 1468.07) end })
-HiddenSection:CreateButton({ Name = "Toy car3", Callback = function() teleportTo(1055.25, 18.20, 1161.50) end })
-HiddenSection:CreateButton({ Name = "Toy car4", Callback = function() teleportTo(-1834.48, 17.32, -1179.66) end })
-HiddenSection:CreateButton({ Name = "Toy car5", Callback = function() teleportTo(3039.70, -52.06, -4776.76) end })
-HiddenSection:CreateButton({ Name = "plush crab", Callback = function() teleportTo(1868.70, 41.52, 1444.50) end })
-HiddenSection:CreateButton({ Name = "Mini Tokyo Tower", Callback = function() teleportTo(858.81, -12.33, 1597.81) end })
-HiddenSection:CreateButton({ Name = "Canon mini", Callback = function() teleportTo(2849.33, 151.29, -383.97) end })
-HiddenSection:CreateButton({ Name = "mini temple gate", Callback = function() teleportTo(2849.54, 101.06, -265.52) end })
-HiddenSection:CreateButton({ Name = "mini old town gate", Callback = function() teleportTo(2046.32, 16.61, 1438.46) end })
-HiddenSection:CreateButton({ Name = "ae86.1/5", Callback = function() teleportTo(2936.67, 28.80, 1187.92) end })
-HiddenSection:CreateButton({ Name = "ae86.2/5", Callback = function() teleportTo(3193.79, 122.60, 1392.70) end })
-HiddenSection:CreateButton({ Name = "ae86.3/5", Callback = function() teleportTo(2587.60, 5.23, -674.54) end })
-HiddenSection:CreateButton({ Name = "ae86.4/5", Callback = function() teleportTo(156.27, 35.71, -1430.83) end })
-HiddenSection:CreateButton({ Name = "ae86.5/5", Callback = function() teleportTo(-1821.14, 5.50, -1456.99) end })
-
-local SettingsTab = TabSection:CreateTab({
-    Name = "Settings",
-    Icon = NebulaIcons:GetIcon('settings', 'Material'),
-    Columns = 1
-}, "INDEX")
-
-local SettingsSection = SettingsTab:CreateSection("Settings")
-SettingsSection:CreateKeybind({
-    Name = "Toggle UI",
-    CurrentKeybind = "K",
-    HoldToInteract = false,
-    Callback = function()
-        Starlight:ToggleUI()
-    end
-})
+HiddenTab:CreateButton({ Name = "Toy car1", Callback = function() teleportTo(339.92, 206.67, -571.40) end })
+HiddenTab:CreateButton({ Name = "Toy car2", Callback = function() teleportTo(1759.59, 16.01, 1468.07) end })
+HiddenTab:CreateButton({ Name = "Toy car3", Callback = function() teleportTo(1055.25, 18.20, 1161.50) end })
+HiddenTab:CreateButton({ Name = "Toy car4", Callback = function() teleportTo(-1834.48, 17.32, -1179.66) end })
+HiddenTab:CreateButton({ Name = "Toy car5", Callback = function() teleportTo(3039.70, -52.06, -4776.76) end })
+HiddenTab:CreateButton({ Name = "plush crab", Callback = function() teleportTo(1868.70, 41.52, 1444.50) end })
+HiddenTab:CreateButton({ Name = "Mini Tokyo Tower", Callback = function() teleportTo(858.81, -12.33, 1597.81) end })
+HiddenTab:CreateButton({ Name = "Canon mini", Callback = function() teleportTo(2849.33, 151.29, -383.97) end })
+HiddenTab:CreateButton({ Name = "mini temple gate", Callback = function() teleportTo(2849.54, 101.06, -265.52) end })
+HiddenTab:CreateButton({ Name = "mini old town gate", Callback = function() teleportTo(2046.32, 16.61, 1438.46) end })
+HiddenTab:CreateButton({ Name = "ae86.1/5", Callback = function() teleportTo(2936.67, 28.80, 1187.92) end })
+HiddenTab:CreateButton({ Name = "ae86.2/5", Callback = function() teleportTo(3193.79, 122.60, 1392.70) end })
+HiddenTab:CreateButton({ Name = "ae86.3/5", Callback = function() teleportTo(2587.60, 5.23, -674.54) end })
+HiddenTab:CreateButton({ Name = "ae86.4/5", Callback = function() teleportTo(156.27, 35.71, -1430.83) end })
+HiddenTab:CreateButton({ Name = "ae86.5/5", Callback = function() teleportTo(-1821.14, 5.50, -1456.99) end })
