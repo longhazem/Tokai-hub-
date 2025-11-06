@@ -1,0 +1,62 @@
+local Starlight = loadstring(game:HttpGet("https://raw.nebulasoftworks.xyz/starlight"))()
+local NebulaIcons = loadstring(game:HttpGet("https://raw.nebulasoftworks.xyz/nebula-icon-library-loader"))()
+
+local Window = Starlight:CreateWindow({
+    Name = "Tokai-hub",
+    Subtitle = "v1.0",
+    Icon = 123456789,
+    Theme = "Bloom",
+    LoadingSettings = {
+        Title = "Toka-Hub",
+        Subtitle = "Welcome to Tokai Hub",
+    },
+    FileSettings = {
+        ConfigFolder = "Tokai-hub"
+    },
+})
+
+Window:PromptDialog({
+    Name = "info",
+    Content = "Welcome to Tokai Hub, enjoy your experience!.",
+    Type = 1,
+    Actions = {
+        Primary = {
+            Name = "info!",
+            Callback = function()
+                print("Okay!")
+            end
+        },
+        {
+            Name = "Cancel",
+            Callback = function()
+                print("Cancel!")
+            end
+        },
+    }
+})
+
+local TabSection = Window:CreateTabSection("Tab Section")
+
+local MainTab = TabSection:CreateTab({
+    Name = "Main",
+    Icon = NebulaIcons:GetIcon('home', 'Material'),
+    Columns = 1
+}, "MAIN")
+
+local MiscTab = TabSection:CreateTab({
+    Name = "Misc",
+    Icon = NebulaIcons:GetIcon('widgets', 'Material'),
+    Columns = 1
+}, "MISC")
+
+local TeleportTab = TabSection:CreateTab({
+    Name = "Teleporter",
+    Icon = NebulaIcons:GetIcon('place', 'Material'),
+    Columns = 2
+}, "TELEPORT")
+
+local HiddenTab = TabSection:CreateTab({
+    Name = "Hidden Teleport",
+    Icon = NebulaIcons:GetIcon('visibility_off', 'Material'),
+    Columns = 2
+}, "HIDDEN")
